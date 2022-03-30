@@ -1,0 +1,35 @@
+:host {
+  width: 72%;
+  float: left;
+}
+.weather-list {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+.weather-list td,
+.weather-list th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.weather-list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+
+.weather-list .date {
+  width: 150px;
+  cursor: pointer;
+}
+
+.weather-list tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.weather-list tr:hover {
+  background-color: #ddd;
+}
