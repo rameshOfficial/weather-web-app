@@ -35,4 +35,13 @@ describe('WeatherListComponent', () => {
     component.sortByDate()
     expect(component.weatherItems).toEqual(expected);
   });
+
+  it('sortByDate to sort the weather data by date asc', () => {
+    
+    component.weatherItems = [{dateInMillis:1648532460},{dateInMillis:1648532520},{dateInMillis:1648532580}] as any;
+    const expected = [{dateInMillis:1648532460},{dateInMillis:1648532520},{dateInMillis:1648532580}] as any
+    component.sortByAsc = true;
+    component.sortByDate()
+    expect(component.weatherItems).toEqual(expected);
+  });
 });

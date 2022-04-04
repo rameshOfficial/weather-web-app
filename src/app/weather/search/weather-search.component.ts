@@ -19,14 +19,10 @@ export class WeatherSearchComponent {
   constructor(private _weatherService: WeatherService) {}
 
   onSearch(city: string, country?: string): void {
+    this._weatherService.clearWeatherItems();
     this._weatherService.searchWeatherInfo(city, country).subscribe((res) => {
-      if (res.name.toLowerCase() == city.toLowerCase()) {
         this.error = false;
-        this._weatherService.clearWeatherItems();
         this.addToItem(res);
-      } else {
-        this.error = true;
-      }
     },
     (err) => {
       this.error = true;

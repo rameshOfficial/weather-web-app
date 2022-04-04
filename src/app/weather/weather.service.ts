@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 import { WeatherItem } from './item/weather-item';
 
@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class WeatherService {
   weatherItems: WeatherItem[] = [];
+  APPID = environment.appId;
   constructor(private _http: HttpClient) {}
 
   addWeatherItem(item: WeatherItem) {
@@ -25,8 +26,7 @@ export class WeatherService {
 }
 
   searchWeatherInfo(city: string, country?: string): Observable<any> {
-    const APPID = environment.appId;
-    let url = environment.baseUrl+`weather?q=${city},${country}&APPID=${APPID}&units=metric`;
+    let url = environment.baseUrl+`weather?q=${city},${country}&APPID=${this.APPID}&units=metric`;
     return this._http.get(url).pipe(
       catchError((error: HttpErrorResponse) => {
         if(404 === error.status) {
@@ -41,8 +41,7 @@ export class WeatherService {
   }
 
   getWeatherForecast(lat: number, lon: number): Observable<any> {
-    const APPID = environment.appId;
-    let url = environment.baseUrl+`onecall?lat=${lat}&lon=${lon}&exclude=hourly&&APPID=${APPID}&units=metric`;
+    let url = environment.baseUrl+`onecall?lat=${lat}&lon=${lon}&exclude=hourly&&APPID=${this.APPID}&units=metric`;
     return this._http.get(url).pipe(
       catchError((error: HttpErrorResponse) => {
         if(404 === error.status) {

@@ -60,7 +60,7 @@ describe('WeatherSearchComponent', () => {
     component.error = false;
     component.onSearch("Hyderabad","");
     service.searchWeatherInfo("Hyderabad","").subscribe(data => {
-      expect(component.error).toBeTrue()
+      expect(component.error).toBeFalse()
     });
     
   });
